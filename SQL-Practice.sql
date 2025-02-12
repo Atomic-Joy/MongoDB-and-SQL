@@ -59,25 +59,34 @@ INSERT INTO Title
  (003, 'Lead', '2016-06-11 00:00:00');
 
 SELECT * FROM Worker WHERE SALARY not between 100000 AND 200000;
+
 SELECT first_Name FROM Worker WHERE worker_id IN (2,4,6);
+
 SELECT * FROM worker WHERE salary BETWEEN 200000 AND 400000
 AND worker_id IN(1,2,3,4,5);
 DESC worker;
+
 SELECT min(salary) FROM worker WHERE department='HR';
+
 SELECT DISTINCT (department) FROM worker;
-#alias-help u TO give SOME temp name FOR a COLUMN
+
+/* alias-help you to give some temp name for a column */
+
 SELECT worker_id AS emp_id FROM worker;
+
 SELECT worker_id FROM worker
 UNION ALL
 SELECT first_name FROM worker;
+
 SELECT department,worker_id FROM worker WHERE salary=100000
 UNION 
 SELECT department,worker_id FROM worker WHERE salary=200000
 ORDER BY worker_id;
+
 SELECT worker_id,first_name,department,
 CASE
-WHEN salary>100000 THEN 'Rich People'
-WHEN salary<100000 && salary>=100000 THEN 'Middle class People'
-ELSE 'POOR'
+	WHEN salary>100000 THEN 'Rich People'
+	WHEN salary<100000 && salary>=100000 THEN 'Middle class People'
+	ELSE 'POOR'
 END
 AS People_stage_wise FROM worker;
