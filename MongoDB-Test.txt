@@ -75,3 +75,20 @@ db.products.find({
   "name": { $regex: "^S", $options: "i" },
   "price": { $gt: 700 }
 })
+
+11.How do you calculate the total price of all items?
+Sol:
+db.products.aggregate([
+  { $group: { _id: null, totalPrice: { $sum: "$price" } } }
+])
+
+12.How do you project only the size field for each item?
+Sol:
+db.products.find({}, { "spec.screen": 1, "_id": 0 })
+
+13.How do you find items who are tall size & group them by item wise?
+Sol:
+db.products.aggregate([
+  { $match: { "spec.screen": { $gt: 9.5 } } }
+  { $group: { _id: "$name", items: { $push: "$$ROOT" } } }
+])
