@@ -96,3 +96,12 @@ db.products.aggregate([
 14.How do you find the second item when sorted by price in ascending order?
 Sol:
 db.products.find().sort({ "price": 1 }).skip(1).limit(1)
+
+15. How do you group by items and calculate the total number of items and average price in a single aggregation?
+Sol:
+db.products.aggregate([
+  { $group: { 
+      _id: "$name",
+      totalItems: { $sum: 1 },
+      averagePrice: { $avg: "$price" } } }
+])
